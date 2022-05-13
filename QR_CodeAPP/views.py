@@ -44,6 +44,7 @@ def login_submit(request):
         email = request.POST['Email']
         print(email)
         passwd = request.POST['Password']
+        print(passwd)
         url = 'https://n6edeo7xci.execute-api.ap-south-1.amazonaws.com/v1/login' 
         headers = {'content-type':'application/json'}
         data = {"email": email, "password": passwd} 
