@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+</head>
+<body>
+
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method='POST' action="{% url 'User_RegiterSubmit' %}">
+                {% csrf_token %}
+                <h1>Create Account</h1>
+                <input type="text" placeholder="Name" name="Name" />
+                <input type="email" placeholder="Email" name="Email" />
+                <input type="password" placeholder="Password" name="Password" />
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        
+        <div class="form-container sign-in-container">
+            <form method='POST' action="{% url 'login_submit' %}">
+                {% csrf_token %}
+                <h2>
+                    {% if messages %}
+                    <!-- <ul class="alert-warning"> -->
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                        {% if message.tags %} {% endif %}{{ message }}
+                    </div>
+                    {% endfor %}
+                    <!-- </ul> -->
+                    {% endif %}
+                </h2><br>
+                <h1>Sign in</h1>
+                
+                <input type="email" placeholder="Email" name="Email" />
+                <input type="password" placeholder="Password" name="Password" />
+                
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="{% static 'js/myjs.js' %}"></script>
+</body>
+</html>
